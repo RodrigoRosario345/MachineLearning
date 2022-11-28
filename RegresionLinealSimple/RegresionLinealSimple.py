@@ -8,15 +8,18 @@ import pandas as pd # libreria para importar y manejar datasets y manipularlos
 
 # importar el dataset
 
-dataset = pd.read_csv('RegresionLinealSimple/Salary_Data.csv')
-x = dataset.iloc[:, :-1].values # matriz de variables independientes 
-y = dataset.iloc[:, 1].values # vector de variables dependientes, variable a predecir
+dataset = pd.read_csv('RegresionLinealSimple/insurance.csv')
+print(dataset)
+x = dataset.iloc[:100, 2].values # matriz de variables independientes 
+y = dataset.iloc[:100, 6].values # vector de variables dependientes, variable a predecir
 
+x = x.reshape(-1, 1) # convertir el vector x en una matriz de una columna
+y = y.reshape(-1, 1) # convertir el vector y en una matriz de una columna
 # dividir el dataset en conjunto de entrenamiento y conjunto de testing
 
 from sklearn.model_selection import train_test_split
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=1/3, random_state=0) # dividir el dataset en conjunto de entrenamiento y conjunto de testing ordenados aleatoriamente con un 20% de datos para testing y 80% para entrenamiento x_train y x_test son las variables independientes y_train y y_test son las variables dependientes
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=2/3, random_state=0) # dividir el dataset en conjunto de entrenamiento y conjunto de testing ordenados aleatoriamente con un 20% de datos para testing y 80% para entrenamiento x_train y x_test son las variables independientes y_train y y_test son las variables dependientes
 
 # ajustar la regresion lineal simple con el conjunto de entrenamiento
 
@@ -44,3 +47,7 @@ plt.xlabel('Años de experiencia') # etiqueta del eje x
 plt.ylabel('Sueldo (en $)') # etiqueta del eje y
 
 plt.show() # mostrar el grafico
+
+
+#funcion de hipotesis
+
